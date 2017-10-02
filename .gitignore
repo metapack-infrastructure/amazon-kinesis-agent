@@ -9,6 +9,7 @@ out/
 *.ipr
 *.iws
 *.iml
+build/
 
 # Eclipse
 .classpath
@@ -24,3 +25,6 @@ ant_build
 dependencies
 *.swp
 *.swo
+
+#Gradle
+.gradle/

@@ -1,0 +1,49 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'com.amazonaws'
+version = '1.1'
+
+description = """Amazon Kinesis Agent"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+        
+     maven { url "http://repo.maven.apache.org/maven2" }
+}
+
+ext {
+     awsJavaSdkVersion = '1.11.28'
+}
+
+dependencies {
+     compile "com.amazonaws:aws-java-sdk-core:${awsJavaSdkVersion}"
+     compile "com.amazonaws:aws-java-sdk-kinesis:${awsJavaSdkVersion}"
+     compile "com.amazonaws:aws-java-sdk-cloudwatch:${awsJavaSdkVersion}"
+     compile "com.amazonaws:aws-java-sdk-sts:${awsJavaSdkVersion}"
+     compile 'com.fasterxml.jackson.core:jackson-annotations:2.6.3'
+     compile 'com.fasterxml.jackson.core:jackson-core:2.6.3'
+     compile 'com.fasterxml.jackson.core:jackson-databind:2.6.3'
+     compile 'com.google.code.findbugs:jsr305:3.0.1'
+     compile 'com.google.guava:guava:18.0'
+     compile 'org.apache.httpcomponents:httpclient:4.5.1'
+     compile 'org.apache.httpcomponents:httpclient-cache:4.5.1'
+     compile 'org.apache.httpcomponents:httpmime:4.5.1'
+     compile 'org.apache.httpcomponents:httpcore:4.4.3'
+     compile 'org.apache.httpcomponents:httpcore-ab:4.4.3'
+     compile 'org.apache.httpcomponents:httpcore-nio:4.4.3'
+     compile 'commons-cli:commons-cli:1.2'
+     compile 'commons-codec:commons-codec:1.6'
+     compile 'commons-logging:commons-logging-adapters:1.1'
+     compile 'commons-logging:commons-logging-api:1.1'
+     compile 'org.apache.commons:commons-lang3:3.4'
+     compile 'log4j:log4j:1.2.17'
+     compile 'org.slf4j:slf4j-api:1.7.12'
+     compile 'org.slf4j:slf4j-log4j12:1.7.12'
+     compile 'com.beust:jcommander:1.48'
+     compile 'org.xerial:sqlite-jdbc:3.8.11.2'
+     compile 'joda-time:joda-time:2.8.2'
+     compile 'org.projectlombok:lombok:1.16.6'
+}

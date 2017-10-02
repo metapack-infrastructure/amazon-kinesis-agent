@@ -1,5 +1,7 @@
 # Amazon Kinesis Agent
 
+*This is a fork of the [awslabs/amazon-kinesis-agent](https://github.com/awslabs/amazon-kinesis-agent) repository. The source code has been kept as-is, but the build tool has been changed to Gradle*
+
 The **Amazon Kinesis Agent** is a stand-alone Java software application that offers an easier way to collect and ingest data into [Amazon Kinesis][kinesis] services, including [Amazon Kinesis Streams][kinesis-stream] and [Amazon Kinesis Firehose][kinesis-firehose].
 
 * [Amazon Kinesis details][kinesis]

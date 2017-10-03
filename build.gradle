@@ -1,5 +1,20 @@
 apply plugin: 'java'
 apply plugin: 'maven'
+apply plugin: 'application'
+
+buildscript {
+     repositories {
+          maven {
+               url "https://plugins.gradle.org/m2/"
+          }
+     }
+     dependencies {
+          classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
+     }
+}
+
+apply plugin: 'com.jfrog.bintray'
+
 
 group = 'com.amazonaws'
 version = '1.1'
@@ -17,6 +32,7 @@ ext {
      awsJavaSdkVersion = '1.11.28'
 }
 
+mainClassName = 'com.amazon.kinesis.streaming.agent.Agent'
 
 processResources {
      from ('src/main/java') {
@@ -66,3 +82,26 @@ dependencies {
 test {
      useTestNG()
 }
+
+bintray {
+     user = repositoryUser
+     key = repositoryPass
+
+     dryRun = false
+     publish = true
+
+     filesSpec {
+          from new File(buildDir, 'distributions')
+          include '**/*.tar'
+          into "com/amazonaws/${project.name}/${project.version}"
+     }
+
+     pkg {
+          repo = repositoryName
+          userOrg = repositoryOrg
+          name = project.name
+          desc = project.description
+          labels = ['aws','kinesis']
+     }
+}
+

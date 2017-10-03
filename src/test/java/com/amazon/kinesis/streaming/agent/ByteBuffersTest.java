@@ -5,6 +5,7 @@ package com.amazon.kinesis.streaming.agent;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.testng.Assert.assertEquals;
@@ -112,7 +113,7 @@ public class ByteBuffersTest {
     @Test(expectedExceptions = EOFException.class)
     public void testReadFullyEOFException() throws IOException {
         FileChannel mockChannel = mock(FileChannel.class);
-        when(mockChannel.read(any(ByteBuffer.class), anyInt())).thenReturn(-1);
+        when(mockChannel.read(any(ByteBuffer.class), anyLong())).thenReturn(-1);
         ByteBuffers.readFully(mockChannel, 6, 8);
     }
 

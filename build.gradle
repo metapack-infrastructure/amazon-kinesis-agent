@@ -17,6 +17,19 @@ ext {
      awsJavaSdkVersion = '1.11.28'
 }
 
+
+processResources {
+     from ('src/main/java') {
+          include '**/*.properties', '**/*.xml'
+     }
+}
+
+processTestResources {
+     from ('src/test/java') {
+          include '**/*.properties', '**/*.xml', '**/*.json'
+     }
+}
+
 dependencies {
      compile "com.amazonaws:aws-java-sdk-core:${awsJavaSdkVersion}"
      compile "com.amazonaws:aws-java-sdk-kinesis:${awsJavaSdkVersion}"

@@ -1,0 +1,37 @@
+#!/usr/bin/env groovy
+
+final NODE = "mp-aws-linux-java8-git"
+def version
+
+node(NODE) {
+    timestamps {
+        try {
+            stage("build and unit test") {
+                checkout scm
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'bintray-credentials', passwordVariable: 'ORG_GRADLE_PROJECT_repositoryPass', usernameVariable: 'ORG_GRADLE_PROJECT_repositoryUser']]) {
+		    try {
+		           sh "./gradlew clean build"
+		           println "build and unit test"
+	            } finally {
+
+		        }
+              }
+            }
+
+            stage("bintray publish") {
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'bintray-credentials', passwordVariable: 'ORG_GRADLE_PROJECT_repositoryPass', usernameVariable: 'ORG_GRADLE_PROJECT_repositoryUser']]) {
+                    sh "./gradlew bintray"
+                }
+            }
+
+        } catch (e) {
+            notifyFailed()
+            throw e
+        }
+    }
+}
+
+def notifyFailed() {
+    hipchatSend color: 'RED', room: '3837036', sendAs: 'Jenkins', v2enabled: false, token: '71222fa7b59ac69eb8f272c283cc17',
+            message: "${env.JOB_NAME} #${env.BUILD_NUMBER} (<a href=\"${env.BUILD_URL}\">Open</a>)"
+}

@@ -17,7 +17,7 @@ apply plugin: 'com.jfrog.bintray'
 
 
 group = 'com.amazonaws'
-version = '1.1.1'
+version = '1.1.2'
 
 description = """Amazon Kinesis Agent"""
 
@@ -76,6 +76,7 @@ dependencies {
      compile 'org.projectlombok:lombok:1.16.6'
 
      runtime 'net.logstash.log4j:jsonevent-layout:1.7'
+     runtime 'com.newrelic.agent.java:newrelic-agent:3.44.1'
 
      testCompile 'org.mockito:mockito-core:2.10.0'
      testCompile 'org.testng:testng:6.11'

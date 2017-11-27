@@ -124,7 +124,9 @@ _debug_msg CLASSPATH=$CLASSPATH
 set +e
 
 OOME_ARGS="-XX:OnOutOfMemoryError=\"/bin/kill -9 %p\""
-JVM_ARGS="-server -Xms${JAVA_START_HEAP} -Xmx${JAVA_MAX_HEAP} $JVM_ARGS"
+NEWRELIC_AGENT="-javaagent:/usr/share/aws-kinesis-agent/lib/newrelic-agent-3.44.1.jar"
+NEWRELIC_ARGS="-Dnewrelic.config.file=/etc/aws-kinesis/newrelic.yml"
+JVM_ARGS="-server -Xms${JAVA_START_HEAP} -Xmx${JAVA_MAX_HEAP} $NEWRELIC_AGENT $NEWRELIC_ARGS $JVM_ARGS"
 
 MAIN_CLASS="com.amazon.kinesis.streaming.agent.Agent"
 
